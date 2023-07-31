@@ -1,0 +1,28 @@
+{
+  "name": "docker-nodejs",
+  "version": "1.0.0",
+  "description": "Nodejs express application that implement docker from development to deployment",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/arkandamar/Docker-Nodejs.git"
+  },
+  "keywords": [
+    "docker",
+    "express",
+    "development",
+    "deployment"
+  ],
+  "author": "arkandamar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arkandamar/Docker-Nodejs/issues"
+  },
+  "homepage": "https://github.com/arkandamar/Docker-Nodejs#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
