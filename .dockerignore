@@ -1,0 +1,10 @@
+# docker ignore used to ignore certain file from getting copied to container
+# we should not copy all things to container because it's wasting time
+.gitignore
+.git
+.dockerignore
+Dockerfile
+README.md
+
+# ignoring node_modules because container will eventually install them
+node_modules
