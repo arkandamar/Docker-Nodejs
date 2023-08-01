@@ -57,3 +57,5 @@ CMD [ "npm", "run", "dev" ]
 
 #? add .env to make port
 #? to load the .env we can use --env-file envPath
+
+#* docker run --env-file ./.env -v $(pwd):/app -v /app/node_modules --memory 500m --cpus 0.8 --publish 3000:3000 -d --name nodeapp arkandamar/node-app
