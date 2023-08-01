@@ -4,7 +4,8 @@
   "description": "Nodejs express application that implement docker from development to deployment",
   "main": "index.js",
   "scripts": {
-    "test": "npm run"
+    "start": "node index.js",
+    "dev": "nodemon -L index.js"
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,8 @@
   "homepage": "https://github.com/arkandamar/Docker-Nodejs#readme",
   "dependencies": {
     "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
