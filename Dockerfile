@@ -15,8 +15,11 @@ RUN npm install
 # so if the package not change then we dont have to npm install all over again
 COPY . .
 
+# make environment variable
+ENV PORT 3000
+
 # informs Docker that container listens on specified network ports
-EXPOSE 3000
+EXPOSE $PORT
 
 # execute command when container is starting at runtime
 CMD [ "npm", "run", "dev" ]
@@ -50,3 +53,7 @@ CMD [ "npm", "run", "dev" ]
 
 #* docker run --mount "type=bind,source=D:\Road to Programmer\Docker\Docker-Nodejs\,target=/app,readonly" -v /app/node_modules --memory 500m --cpus 0.8 --publish 3000:3000 -d --name nodeapp arkandamar/node-app
 #* docker run --mount "type=bind,source=$(pwd),target=/app,readonly" -v /app/node_modules --memory 500m --cpus 0.8 --publish 3000:3000 -d --name nodeapp arkandamar/node-app
+#* docker run -v $(pwd):/app -v /app/node_modules --memory 500m --cpus 0.8 --publish 3000:3000 -d --name nodeapp arkandamar/node-app
+
+#? add .env to make port
+#? to load the .env we can use --env-file envPath
