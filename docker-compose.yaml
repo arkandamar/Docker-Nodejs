@@ -10,16 +10,19 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 500M
-
   mongo:
     image: mongo:latest
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${USER}
       MONGO_INITDB_ROOT_PASSWORD: ${PASS}
+    volumes:
+      - mongo-data:/data/db # make volume for keeping database mongo
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 500M
+volumes:
+  mongo-data:
