@@ -2,11 +2,15 @@ version: "3.8"
 
 services:
   node-app:
+    # override build and pass the node_env args for development
+    build:
+      context: .
+      args:
+        - NODE_ENV=development
     volumes:
       - .:/app:ro
       - /app/node_modules
     environment:
       - NODE_ENV=development
     command: npm run dev
-
 # docker compose -f docker-compose.yaml -f docker-compose-dev.yaml up -d

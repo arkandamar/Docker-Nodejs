@@ -7,8 +7,15 @@ WORKDIR /app
 # copying the package.json and package-lock.json in our source code to node image /app
 COPY package*.json .
 
+# takes node_env arg when building docker image
+ARG NODE_ENV
+
 # install all dependencies in package.json by running npm install
-RUN npm install
+RUN if [ "$NODE_ENV" = "development" ]; \
+        then npm install; \
+        else npm install --only=production; \
+        fi
+#? embedded bash script to determine whether on dev or prod
 
 # copy all the source to /app to track all the changes
 # we copy package.json first because docker cache all layer that isn't changed

@@ -2,8 +2,13 @@ version: "3.8"
 
 services:
   node-app:
+    # override build and pass the node_env args for prod
+    build:
+      context: .
+      args:
+        - NODE_ENV=production
     environment:
       - NODE_ENV=production
     command: node index.js
-
 # docker compose -f docker-compose.yaml -f docker-compose-prod.yaml up -d
+# --build for forcing the building image
