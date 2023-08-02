@@ -1,9 +1,25 @@
-version: '3.8'
+version: "3.8"
 
 services:
   node-app:
     build: .
     ports:
-      - 3000:3000
+      - ${PORT}:${PORT}
     environment:
-      - PORT=3000
+      - PORT=${PORT}
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 500M
+
+  mongo:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${PASS}
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 500M
