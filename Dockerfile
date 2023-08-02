@@ -22,7 +22,8 @@ ENV PORT 3000
 EXPOSE $PORT
 
 # execute command when container is starting at runtime
-CMD [ "npm", "run", "dev" ]
+CMD [ "node", "index.js" ]
+#? will be overrided by docker-compose
 
 # to build this image
 # cd /path

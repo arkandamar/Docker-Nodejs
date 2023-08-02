@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  node-app:
+    build: .
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/app:ro
+      - /app/node_modules
+    environment:
+      - PORT=3000
+
+# specifed the -d (deteach) on up command in docker compose
+# docker compose wont know if there're a changes in image
+# if there're changes but the image still have a same name/id
+# then it wont rebuild the image naturally and just using stale image
+# we have to force docker compose to build new image by specifed --build on run

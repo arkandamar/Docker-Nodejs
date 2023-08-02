@@ -6,5 +6,8 @@
 Dockerfile
 README.md
 
+# ignore all docker compose file
+docker-compose*
+
 # ignoring node_modules because container will eventually install them
 node_modules

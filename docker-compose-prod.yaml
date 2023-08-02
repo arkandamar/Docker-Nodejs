@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  node-app:
+    environment:
+      - NODE_ENV=production
+    command: node index.js
+
+# docker compose -f docker-compose.yaml -f docker-compose-prod.yaml up -d
