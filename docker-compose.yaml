@@ -7,6 +7,8 @@ services:
       - ${PORT}:${PORT}
     environment:
       - PORT=${PORT}
+    depends_on:
+      - mongo # this will make sure that mongo started first before node
     deploy:
       resources:
         limits:

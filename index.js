@@ -11,14 +11,22 @@ const app = express();
 
 const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASS}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`;
 
-mongoose
-  .connect(mongoURL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  // refer mongodb container ip address by service name in docker compose
-  .then(() => console.log("successfully connected to DB"))
-  .catch((e) => console.log(e));
+const connect = () => {
+  mongoose
+    .connect(mongoURL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+    // refer mongodb container ip address by service name in docker compose
+    .then(() => console.log("successfully connected to DB"))
+    .catch((e) => {
+      console.log(e);
+      // if error occured retry connect to mongo
+      setTimeout(connect, 500);
+    });
+};
+
+connect();
 
 app.get("/", (req, res) => {
   res.send("<h2>yak begitulah gais</h2>");
