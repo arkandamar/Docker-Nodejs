@@ -7,6 +7,8 @@ const {
   MONGO_PORT,
 } = require("./config/config");
 
+const postRouter = require("./routes/postRoutes");
+
 const app = express();
 
 const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASS}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`;
@@ -28,9 +30,15 @@ const connect = () => {
 
 connect();
 
+app.use(express.json());
+app.use(express.urlencoded());
+
 app.get("/", (req, res) => {
-  res.send("<h2>yak begitulah gais</h2>");
+  res.send("<h2>yak begitulah</h2>");
 });
+
+// localhost:3000/api/v1/post
+app.use("/api/v1/post", postRouter);
 
 const port = process.env.PORT || 3000;
 
