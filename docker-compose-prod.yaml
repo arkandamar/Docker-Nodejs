@@ -8,7 +8,15 @@ services:
       args:
         - NODE_ENV=production
     environment:
+      # set env var for node
       - NODE_ENV=production
+      - MONGO_USER=arkan
+      - MONGO_PASS=arkan
     command: node index.js
+  mongo:
+    environment:
+      # set mongodb certificate from .env
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASS}
 # docker compose -f docker-compose.yaml -f docker-compose-prod.yaml up -d
 # --build for forcing the building image
