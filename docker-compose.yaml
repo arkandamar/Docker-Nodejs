@@ -9,6 +9,7 @@ services:
       - PORT=${PORT}
     depends_on:
       - mongo # this will make sure that mongo started first before node
+      - redis
     deploy:
       resources:
         limits:
@@ -21,7 +22,14 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.5"
-          memory: 500M
+          cpus: "0.3"
+          memory: 300M
+  redis:
+    image: redis
+    deploy:
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: 200M
 volumes:
   mongo-data:
