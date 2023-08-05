@@ -8,6 +8,7 @@ const {
 } = require("./config/config");
 
 const postRouter = require("./routes/postRoutes");
+const userRouter = require("./routes/userRoutes");
 
 const app = express();
 
@@ -31,14 +32,17 @@ const connect = () => {
 connect();
 
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.send("<h2>yak begitulah</h2>");
+  res.send("<h2>yak begitulah ya ges</h2>");
 });
 
 // localhost:3000/api/v1/post
 app.use("/api/v1/post", postRouter);
+
+// localhost:3000/api/v1/user
+app.use("/api/v1/user", userRouter);
 
 const port = process.env.PORT || 3000;
 
