@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const redis = require("redis");
 const RedisStore = require("connect-redis").default;
+const cors = require("cors");
 const {
   MONGO_USER,
   MONGO_PASS,
@@ -21,6 +22,14 @@ let redisClient = redis.createClient({
   },
 });
 
+// import routes
+const postRouter = require("./routes/postRoutes");
+const userRouter = require("./routes/userRoutes");
+
+// server
+const app = express();
+const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASS}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`;
+
 // call client redis
 (async () => {
   await redisClient.connect();
@@ -29,17 +38,10 @@ let redisClient = redis.createClient({
 redisClient.on("error", function (err) {
   console.log("Could not establish a connection with redis. " + err);
 });
+
 redisClient.on("connect", function (err) {
   console.log("Connected to redis successfully");
 });
-
-// import routes
-const postRouter = require("./routes/postRoutes");
-const userRouter = require("./routes/userRoutes");
-
-// server
-const app = express();
-const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASS}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`;
 
 const connect = () => {
   mongoose
@@ -60,6 +62,7 @@ connect();
 
 // middleware
 app.enable("trust proxy");
+app.use(cors());
 app.use(
   session({
     store: new RedisStore({ client: redisClient }),
